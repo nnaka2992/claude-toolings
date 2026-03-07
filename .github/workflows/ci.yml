@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      bash: ${{ steps.filter.outputs.bash }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            bash:
+              - '**/*.sh'
+              - '**/*.bats'
+              - '.githooks/**'
+
+  bash:
+    needs: changes
+    if: needs.changes.outputs.bash == 'true'
+    uses: ./.github/workflows/bash.yml
