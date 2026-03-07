@@ -21,6 +21,16 @@ A collection of sharable Claude Code tool sets — skills, hooks, and rules.
 
 See each category's README for format details and each tool set's README for usage instructions.
 
+## Development
+
+```bash
+# Enter dev environment (provides bats, shellcheck, shfmt, jq)
+nix develop --impure
+
+# Enable pre-commit hook
+git config core.hooksPath .githooks
+```
+
 ## License
 
 [MIT](LICENSE)

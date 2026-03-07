@@ -12,7 +12,7 @@ SESSION_ID=$(printf '%s' "$INPUT" | jq -r '.session_id // empty' 2>/dev/null)
 
 case "$EVENT" in
 UserPromptSubmit)
-	PROMPT=$(printf '%s' "$INPUT" | jq -r '.prompt // empty' 2>/dev/null)
+	PROMPT=$(printf '%s' "$INPUT" | jq -r '.prompt // empty' 2>/dev/null | tr '\n' ' ')
 	printf '[%s] [%s] USER: %s\n' "$TIMESTAMP" "$SESSION_ID" "$PROMPT" >>"$LOG_FILE"
 	;;
 PostToolUse)
@@ -21,7 +21,7 @@ PostToolUse)
 	printf '[%s] [%s] TOOL: %s | INPUT: %s\n' "$TIMESTAMP" "$SESSION_ID" "$TOOL" "$TOOL_IN" >>"$LOG_FILE"
 	;;
 Stop)
-	MSG=$(printf '%s' "$INPUT" | jq -r '.last_assistant_message // empty' 2>/dev/null)
+	MSG=$(printf '%s' "$INPUT" | jq -r '.last_assistant_message // empty' 2>/dev/null | tr '\n' ' ')
 	printf '[%s] [%s] CLAUDE: %s\n' "$TIMESTAMP" "$SESSION_ID" "$MSG" >>"$LOG_FILE"
 	;;
 *)
