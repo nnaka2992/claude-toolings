@@ -30,10 +30,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bats-core/bats-action@main
         with:
-          support-path: false
-          assert-path: false
-          detik-path: false
-          file-path: false
+          support-install: false
+          assert-install: false
+          detik-install: false
+          file-install: false
       - name: bats
         run: |
           mapfile -t BATS_TEST_FILES < <(find . -name "*_test.bats" -type f)
