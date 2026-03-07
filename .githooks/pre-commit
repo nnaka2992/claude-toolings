@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Re-exec inside nix develop if flake.nix exists and we're not already in it
+if [[ -f flake.nix && -z "${IN_NIX_SHELL:-}" ]]; then
+	exec nix develop --impure --command bash "$0" "$@"
+fi
+
+SHELL_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.sh$' || true)
+BATS_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.bats$' || true)
+
+if [[ -z "$SHELL_FILES" && -z "$BATS_FILES" ]]; then
+	exit 0
+fi
+
+FAILED=0
+
+if [[ -n "$SHELL_FILES" ]]; then
+	echo "Running shellcheck..."
+	for f in $SHELL_FILES; do
+		if ! shellcheck "$f"; then
+			FAILED=1
+		fi
+	done
+
+	echo "Running shfmt..."
+	for f in $SHELL_FILES; do
+		if ! shfmt -d "$f"; then
+			echo "  $f needs formatting. Run: shfmt -w $f"
+			FAILED=1
+		fi
+	done
+fi
+
+if [[ -n "$BATS_FILES" || -n "$SHELL_FILES" ]]; then
+	echo "Running bats tests..."
+	mapfile -t BATS_TEST_FILES < <(find . -name '*_test.bats' -type f 2>/dev/null)
+	if [[ ${#BATS_TEST_FILES[@]} -gt 0 ]]; then
+		if ! bats "${BATS_TEST_FILES[@]}"; then
+			FAILED=1
+		fi
+	fi
+fi
+
+exit "$FAILED"
