@@ -6,10 +6,10 @@ Logs Claude Code interactions to hourly log files organized by date.
 
 | Event | Logged as |
 |---|---|
-| `UserPromptSubmit` | `[timestamp] USER: <prompt>` |
-| `PostToolUse` | `[timestamp] TOOL: <tool_name> \| INPUT: <tool_input>` |
-| `Stop` | `[timestamp] CLAUDE: <last_assistant_message>` |
-| Other | `[timestamp] RAW: <raw_input>` |
+| `UserPromptSubmit` | `[timestamp] [session_id] USER: <prompt>` |
+| `PostToolUse` | `[timestamp] [session_id] TOOL: <tool_name> \| INPUT: <tool_input>` |
+| `Stop` | `[timestamp] [session_id] CLAUDE: <last_assistant_message>` |
+| Other | `[timestamp] [session_id] RAW: <raw_input>` |
 
 ## Log structure
 
