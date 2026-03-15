@@ -62,18 +62,20 @@ jobs:
               echo "::error file=$f::Missing required field: author.name"
               FAILED=1
             fi
-            if ! jq -e '.files | type == "object"' "$f" > /dev/null 2>&1; then
-              echo "::error file=$f::Missing or invalid field: files (must be an object)"
+            if ! jq -e '.files | (type == "object") and (length > 0)' "$f" > /dev/null 2>&1; then
+              echo "::error file=$f::Missing or invalid field: files (must be a non-empty object)"
               FAILED=1
             fi
             type_val=$(jq -r '.type // empty' "$f")
-            case "$type_val" in
-              hooks|rules|skills|agents) ;;
-              *)
-                echo "::error file=$f::Invalid type: $type_val (must be one of: hooks, rules, skills, agents)"
-                FAILED=1
-                ;;
-            esac
+            if [[ -n "$type_val" ]]; then
+              case "$type_val" in
+                hooks|rules|skills|agents) ;;
+                *)
+                  echo "::error file=$f::Invalid type: $type_val (must be one of: hooks, rules, skills, agents)"
+                  FAILED=1
+                  ;;
+              esac
+            fi
           done < <(find ./plugins -path '*/.claude-plugin/plugin.json' -print0)
           exit "$FAILED"
       - name: Validate marketplace catalog
