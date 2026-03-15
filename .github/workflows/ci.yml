@@ -66,12 +66,14 @@ jobs:
               echo "::error file=$f::Missing or invalid field: files (must be an object)"
               FAILED=1
             fi
-            allowed_types="hooks rules skills agents"
             type_val=$(jq -r '.type // empty' "$f")
-            if [[ -n "$type_val" ]] && ! echo "$allowed_types" | grep -qw "$type_val"; then
-              echo "::error file=$f::Invalid type: $type_val (must be one of: $allowed_types)"
-              FAILED=1
-            fi
+            case "$type_val" in
+              hooks|rules|skills|agents) ;;
+              *)
+                echo "::error file=$f::Invalid type: $type_val (must be one of: hooks, rules, skills, agents)"
+                FAILED=1
+                ;;
+            esac
           done < <(find ./plugins -path '*/.claude-plugin/plugin.json' -print0)
           exit "$FAILED"
       - name: Validate marketplace catalog
@@ -82,14 +84,24 @@ jobs:
             echo "::error::Missing marketplace catalog: $f"
             exit 1
           fi
+          if ! jq -e '.plugins | type == "array"' "$f" > /dev/null 2>&1; then
+            echo "::error file=$f::Missing or invalid field: plugins (must be an array)"
+            exit 1
+          fi
           count=$(jq '.plugins | length' "$f")
           for ((i=0; i<count; i++)); do
+            src=""
             for field in name source; do
               val=$(jq -r ".plugins[$i].$field // empty" "$f")
               if [[ -z "$val" ]]; then
                 echo "::error file=$f::Plugin entry $i missing required field: $field"
                 FAILED=1
               fi
+              [[ "$field" == "source" ]] && src="$val"
             done
+            if [[ -n "$src" ]] && [[ ! -d "$src" ]]; then
+              echo "::error file=$f::Plugin entry $i source path does not exist: $src"
+              FAILED=1
+            fi
           done
           exit "$FAILED"

@@ -1,0 +1,12 @@
+{
+  "name": "review-changes",
+  "description": "Code review skill that checks quality, performance, tests, docs, and security using dedicated subagents",
+  "version": "1.0.0",
+  "author": {
+    "name": "nnaka2992"
+  },
+  "type": "skills",
+  "files": {
+    "skills": ["skills/review.md"]
+  }
+}

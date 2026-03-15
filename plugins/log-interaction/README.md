@@ -6,7 +6,7 @@ Logs Claude Code interactions to hourly log files organized by date.
 
 ```shell
 /plugin marketplace add nnaka2992/claude-toolings
-/plugin install log-interaction@claude-toolings
+/plugin install log-interaction@nnaka2992-claude-toolings
 ```
 
 ## What it logs

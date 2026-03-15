@@ -6,7 +6,7 @@ Git workflow conventions for Claude Code.
 
 ```shell
 /plugin marketplace add nnaka2992/claude-toolings
-/plugin install git-rules@claude-toolings
+/plugin install git-rules@nnaka2992-claude-toolings
 ```
 
 ## What it does
@@ -22,8 +22,8 @@ Copy the rule file into your rules directory:
 
 ```bash
 # Project-scoped (shared with team)
-cp rules/git.md /path/to/project/.claude/rules/
+cp plugins/git-rules/rules/git.md /path/to/project/.claude/rules/
 
 # User-scoped (personal, all projects)
-cp rules/git.md ~/.claude/rules/
+cp plugins/git-rules/rules/git.md ~/.claude/rules/
 ```

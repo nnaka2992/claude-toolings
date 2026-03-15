@@ -1,5 +1,5 @@
 {
-  "name": "claude-toolings",
+  "name": "nnaka2992-claude-toolings",
   "owner": {
     "name": "nnaka2992"
   },
@@ -16,6 +16,10 @@
     {
       "name": "git-rules",
       "source": "./plugins/git-rules"
+    },
+    {
+      "name": "review-changes",
+      "source": "./plugins/review-changes"
     }
   ]
 }

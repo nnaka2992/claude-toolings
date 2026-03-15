@@ -1,6 +1,13 @@
-# review
+# review-changes
 
 Review code changes for code quality, performance, tests, docs, and security.
+
+## Install
+
+```shell
+/plugin marketplace add nnaka2992/claude-toolings
+/plugin install review-changes@nnaka2992-claude-toolings
+```
 
 ## What it reviews
 
@@ -26,16 +33,16 @@ Or when reviewing a specific PR:
 /review #123
 ```
 
-## Installation
+## Manual installation
 
 Copy the skill into your commands directory:
 
 ```bash
 # Project-scoped (shared with team)
-cp skills/review/review.md /path/to/project/.claude/commands/
+cp plugins/review-changes/skills/review.md /path/to/project/.claude/commands/
 
 # User-scoped (personal, all projects)
-cp skills/review/review.md ~/.claude/commands/
+cp plugins/review-changes/skills/review.md ~/.claude/commands/
 ```
 
 ## Notes

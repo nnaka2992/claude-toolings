@@ -13,8 +13,9 @@ Add this marketplace to Claude Code:
 Browse and install plugins:
 
 ```shell
-/plugin install log-interaction@claude-toolings
-/plugin install git-rules@claude-toolings
+/plugin install log-interaction@nnaka2992-claude-toolings
+/plugin install git-rules@nnaka2992-claude-toolings
+/plugin install review-changes@nnaka2992-claude-toolings
 ```
 
 ## Available Plugins
@@ -23,6 +24,7 @@ Browse and install plugins:
 |---|---|
 | [log-interaction](plugins/log-interaction/) | Logs Claude Code interactions (prompts, tool calls, responses) to hourly log files |
 | [git-rules](plugins/git-rules/) | Git workflow conventions — conventional commits, force push policy, concise messages |
+| [review-changes](plugins/review-changes/) | Code review skill covering quality, performance, tests, docs, and security |
 
 ## Structure
 
