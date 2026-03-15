@@ -7,7 +7,7 @@
   },
   "type": "hooks",
   "files": {
-    "hooks": "hooks.json",
+    "hooks": ["hooks.json"],
     "scripts": ["log_interaction.sh"]
   }
 }

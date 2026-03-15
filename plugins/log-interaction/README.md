@@ -43,6 +43,7 @@ If you prefer not to use the plugin system:
 
 ## Notes
 
-- The `LOG_DIR` in the script defaults to `<cwd>/.claude/logs/`. Update it if you prefer a different location.
+- Hooks run from the project root. The log directory (`.claude/logs/`) is created relative to the working directory at invocation time.
+- When installed via the plugin system, `$PLUGIN_DIR` is set to the plugin's install path at runtime.
 - Hook input is received via stdin as JSON.
 - Log files are appended to, so they accumulate across sessions within the same hour.

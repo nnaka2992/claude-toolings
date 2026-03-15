@@ -41,10 +41,25 @@ plugins/
 ## Contributing a Plugin
 
 1. Create a directory under `plugins/<your-plugin-name>/`
-2. Add `.claude-plugin/plugin.json` with name, description, version, author, type, and files
+2. Add `.claude-plugin/plugin.json` with the required fields (see schema below)
 3. Add the plugin's files (hooks, rules, skills, agents, etc.)
 4. Add a `README.md` with install instructions and documentation
-5. Register the plugin in `.claude-plugin/marketplace.json`
+5. Register the plugin in `.claude-plugin/marketplace.json` with `name` and `source`
+
+### Plugin manifest schema (`plugin.json`)
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `name` | string | yes | Plugin identifier (kebab-case) |
+| `description` | string | yes | Brief description of what the plugin does |
+| `version` | string | yes | Semver version |
+| `author` | object | yes | `{ "name": "..." }` |
+| `type` | string | yes | Plugin type: `hooks`, `rules`, `skills`, `agents` |
+| `files` | object | yes | Map of file categories to arrays of relative paths. Use `hooks` for hook config files, `scripts` for executables, `rules` for rule files, etc. |
+
+Hook commands can reference `$PLUGIN_DIR` — this variable is set to the plugin's install path at runtime.
+
+Marketplace entries (`marketplace.json`) only need `name` and `source`; all metadata is read from `plugin.json`. Plugins are versioned in their own manifest, not in the marketplace catalog.
 
 ## Development
 
