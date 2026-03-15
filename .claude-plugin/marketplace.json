@@ -1,25 +1,40 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "nnaka2992-claude-toolings",
+  "description": "A collection of reusable Claude Code plugins — hooks, rules, skills, and more",
   "owner": {
     "name": "nnaka2992"
-  },
-  "metadata": {
-    "description": "A collection of reusable Claude Code plugins — hooks, rules, skills, and more",
-    "version": "0.1.0",
-    "pluginRoot": "./plugins"
   },
   "plugins": [
     {
       "name": "log-interaction",
-      "source": "./plugins/log-interaction"
+      "description": "Logs Claude Code interactions (user prompts, tool calls, assistant responses) to hourly log files organized by date",
+      "version": "1.0.0",
+      "author": {
+        "name": "nnaka2992"
+      },
+      "source": "./plugins/log-interaction",
+      "category": "productivity"
     },
     {
       "name": "git-rules",
-      "source": "./plugins/git-rules"
+      "description": "Git workflow conventions — conventional commits, force push policy, concise messages",
+      "version": "1.0.0",
+      "author": {
+        "name": "nnaka2992"
+      },
+      "source": "./plugins/git-rules",
+      "category": "development"
     },
     {
       "name": "review-changes",
-      "source": "./plugins/review-changes"
+      "description": "Code review skill that checks quality, performance, tests, docs, and security using dedicated subagents",
+      "version": "1.0.0",
+      "author": {
+        "name": "nnaka2992"
+      },
+      "source": "./plugins/review-changes",
+      "category": "productivity"
     }
   ]
 }

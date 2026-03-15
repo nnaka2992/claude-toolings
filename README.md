@@ -46,7 +46,7 @@ plugins/
 2. Add `.claude-plugin/plugin.json` with the required fields (see schema below)
 3. Add the plugin's files (hooks, rules, skills, agents, etc.)
 4. Add a `README.md` with install instructions and documentation
-5. Register the plugin in `.claude-plugin/marketplace.json` with `name` and `source`
+5. Register the plugin in `.claude-plugin/marketplace.json` (see marketplace schema below)
 
 ### Plugin manifest schema (`plugin.json`)
 
@@ -61,7 +61,18 @@ plugins/
 
 Hook commands can reference `$PLUGIN_DIR` — this variable is set to the plugin's install path at runtime.
 
-Marketplace entries (`marketplace.json`) only need `name` and `source`; all metadata is read from `plugin.json`. Plugins are versioned in their own manifest, not in the marketplace catalog.
+### Marketplace catalog schema (`marketplace.json`)
+
+Each plugin entry requires `name`, `description`, and `source`. Additional fields (`version`, `author`, `category`) are recommended.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `name` | string | yes | Plugin identifier (must match `plugin.json` name) |
+| `description` | string | yes | Brief description |
+| `source` | string | yes | Relative path to the plugin directory |
+| `version` | string | no | Semver version |
+| `author` | object | no | `{ "name": "..." }` |
+| `category` | string | no | Plugin category (e.g., `productivity`, `development`, `security`) |
 
 ## Development
 
