@@ -1,25 +1,50 @@
 # claude-toolings
 
-A collection of sharable Claude Code tool sets — skills, hooks, and rules.
+A Claude Code plugin marketplace — discover and install reusable hooks, rules, skills, and more.
+
+## Usage
+
+Add this marketplace to Claude Code:
+
+```shell
+/plugin marketplace add nnaka2992/claude-toolings
+```
+
+Browse and install plugins:
+
+```shell
+/plugin install log-interaction@claude-toolings
+/plugin install git-rules@claude-toolings
+```
+
+## Available Plugins
+
+| Plugin | Description |
+|---|---|
+| [log-interaction](plugins/log-interaction/) | Logs Claude Code interactions (prompts, tool calls, responses) to hourly log files |
+| [git-rules](plugins/git-rules/) | Git workflow conventions — conventional commits, force push policy, concise messages |
 
 ## Structure
 
 ```
-<type>/
-├── README.md                — Overview of the category (format, conventions)
+.claude-plugin/
+└── marketplace.json         — Marketplace catalog
+plugins/
 └── <name>/
-    ├── README.md            — Documentation for this specific tool set
-    ├── <name>.<suffix>      — The tool file (e.g., .md for rules/skills, .json for hooks)
-    └── ...                  — Supporting files (scripts, configs, etc.)
+    ├── .claude-plugin/
+    │   └── plugin.json      — Plugin manifest
+    ├── hooks.json            — Hook definitions (if applicable)
+    ├── rules/                — Rule files (if applicable)
+    └── README.md             — Plugin documentation
 ```
 
-### Categories
+## Contributing a Plugin
 
-- **skills/** — Reusable custom slash commands for Claude Code
-- **hooks/** — Event-driven shell commands triggered by Claude Code actions (may include scripts)
-- **rules/** — Markdown rules that guide Claude Code behavior
-
-See each category's README for format details and each tool set's README for usage instructions.
+1. Create a directory under `plugins/<your-plugin-name>/`
+2. Add `.claude-plugin/plugin.json` with name, description, version, and author
+3. Add the plugin's files (hooks, rules, skills, agents, etc.)
+4. Add a `README.md` with install instructions and documentation
+5. Register the plugin in `.claude-plugin/marketplace.json`
 
 ## Development
 

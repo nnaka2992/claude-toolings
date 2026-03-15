@@ -1,6 +1,13 @@
-# git
+# git-rules
 
 Git workflow conventions for Claude Code.
+
+## Install
+
+```shell
+/plugin marketplace add nnaka2992/claude-toolings
+/plugin install git-rules@claude-toolings
+```
 
 ## What it does
 
@@ -8,13 +15,3 @@ Git workflow conventions for Claude Code.
 - Prevents `git push --force` (allows `--force-with-lease` when necessary)
 - Encourages concise, intent-focused commit messages
 - Prevents Co-Authored-By lines in commit messages
-
-## Installation
-
-```bash
-# Project-scoped
-cp rules/git/git.md /path/to/project/.claude/rules/
-
-# User-scoped (global)
-cp rules/git/git.md ~/.claude/rules/
-```

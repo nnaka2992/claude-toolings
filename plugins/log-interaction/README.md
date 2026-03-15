@@ -1,6 +1,13 @@
-# log_interaction
+# log-interaction
 
 Logs Claude Code interactions to hourly log files organized by date.
+
+## Install
+
+```shell
+/plugin marketplace add nnaka2992/claude-toolings
+/plugin install log-interaction@claude-toolings
+```
 
 ## What it logs
 
@@ -25,18 +32,6 @@ Each hour produces a separate log file.
 
 - `bash`
 - `jq`
-
-## Installation
-
-1. Copy the script into your project:
-
-```bash
-cp hooks/log_interaction/log_interaction.sh /path/to/project/.claude/hooks/
-```
-
-2. Merge the hook entries from `settings.json.sample` into your `.claude/settings.local.json`.
-
-3. Update the `command` paths to match where you placed the script.
 
 ## Notes
 

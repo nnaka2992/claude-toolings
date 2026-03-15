@@ -1,0 +1,31 @@
+{
+  "name": "claude-toolings",
+  "owner": {
+    "name": "nnaka2992"
+  },
+  "metadata": {
+    "description": "A collection of reusable Claude Code plugins — hooks, rules, skills, and more",
+    "version": "0.1.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "log-interaction",
+      "source": "./plugins/log-interaction",
+      "description": "Logs Claude Code interactions (user prompts, tool calls, assistant responses) to hourly log files",
+      "version": "1.0.0",
+      "author": {
+        "name": "nnaka2992"
+      }
+    },
+    {
+      "name": "git-rules",
+      "source": "./plugins/git-rules",
+      "description": "Git workflow conventions — conventional commits, force push policy, concise messages",
+      "version": "1.0.0",
+      "author": {
+        "name": "nnaka2992"
+      }
+    }
+  ]
+}
