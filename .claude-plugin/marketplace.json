@@ -11,21 +11,11 @@
   "plugins": [
     {
       "name": "log-interaction",
-      "source": "./plugins/log-interaction",
-      "description": "Logs Claude Code interactions (user prompts, tool calls, assistant responses) to hourly log files",
-      "version": "1.0.0",
-      "author": {
-        "name": "nnaka2992"
-      }
+      "source": "./plugins/log-interaction"
     },
     {
       "name": "git-rules",
-      "source": "./plugins/git-rules",
-      "description": "Git workflow conventions — conventional commits, force push policy, concise messages",
-      "version": "1.0.0",
-      "author": {
-        "name": "nnaka2992"
-      }
+      "source": "./plugins/git-rules"
     }
   ]
 }

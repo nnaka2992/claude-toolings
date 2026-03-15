@@ -15,3 +15,15 @@ Git workflow conventions for Claude Code.
 - Prevents `git push --force` (allows `--force-with-lease` when necessary)
 - Encourages concise, intent-focused commit messages
 - Prevents Co-Authored-By lines in commit messages
+
+## Manual installation
+
+Copy the rule file into your rules directory:
+
+```bash
+# Project-scoped (shared with team)
+cp rules/git.md /path/to/project/.claude/rules/
+
+# User-scoped (personal, all projects)
+cp rules/git.md ~/.claude/rules/
+```

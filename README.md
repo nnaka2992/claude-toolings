@@ -41,7 +41,7 @@ plugins/
 ## Contributing a Plugin
 
 1. Create a directory under `plugins/<your-plugin-name>/`
-2. Add `.claude-plugin/plugin.json` with name, description, version, and author
+2. Add `.claude-plugin/plugin.json` with name, description, version, author, type, and files
 3. Add the plugin's files (hooks, rules, skills, agents, etc.)
 4. Add a `README.md` with install instructions and documentation
 5. Register the plugin in `.claude-plugin/marketplace.json`

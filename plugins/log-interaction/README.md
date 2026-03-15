@@ -33,6 +33,14 @@ Each hour produces a separate log file.
 - `bash`
 - `jq`
 
+## Manual installation
+
+If you prefer not to use the plugin system:
+
+1. Copy `log_interaction.sh` into your project (e.g., `.claude/hooks/`)
+2. Add hook entries to `.claude/settings.local.json` referencing the script path — see `hooks.json` for the structure
+3. Update the `command` paths to match where you placed the script
+
 ## Notes
 
 - The `LOG_DIR` in the script defaults to `<cwd>/.claude/logs/`. Update it if you prefer a different location.
