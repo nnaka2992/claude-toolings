@@ -38,7 +38,7 @@ Each hour produces a separate log file.
 If you prefer not to use the plugin system:
 
 1. Copy `log_interaction.sh` into your project (e.g., `.claude/hooks/`)
-2. Add hook entries to `.claude/settings.local.json` referencing the script path — see `hooks.json` for the structure
+2. Add hook entries to `.claude/settings.local.json` referencing the script path — see `hooks.json` for the structure. Replace `$PLUGIN_DIR` with the actual path to the script (e.g., `/path/to/project/.claude/hooks`)
 3. Update the `command` paths to match where you placed the script
 
 ## Notes
