@@ -54,7 +54,9 @@ skills/
 └── <name>/
     ├── .claude-plugin/
     │   └── plugin.json      — Plugin manifest
-    ├── SKILL.md              — Skill prompt
+    ├── skills/
+    │   └── <name>/
+    │       └── SKILL.md      — Skill prompt
     └── README.md
 ```
 
