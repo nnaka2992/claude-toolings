@@ -7,26 +7,6 @@
   },
   "plugins": [
     {
-      "name": "log-interaction",
-      "description": "Logs Claude Code interactions (user prompts, tool calls, assistant responses) to hourly log files organized by date",
-      "version": "1.0.0",
-      "author": {
-        "name": "nnaka2992"
-      },
-      "source": "./hooks/log_interaction",
-      "category": "productivity"
-    },
-    {
-      "name": "git-rules",
-      "description": "Git workflow conventions — conventional commits, force push policy, concise messages",
-      "version": "1.0.0",
-      "author": {
-        "name": "nnaka2992"
-      },
-      "source": "./rules/git",
-      "category": "development"
-    },
-    {
       "name": "review-changes",
       "description": "Code review skill that checks quality, performance, tests, docs, and security using dedicated subagents",
       "version": "1.0.0",
