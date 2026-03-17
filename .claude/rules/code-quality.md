@@ -1,0 +1,1 @@
+../../rules/code-quality/code-quality.md

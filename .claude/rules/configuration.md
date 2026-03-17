@@ -1,0 +1,1 @@
+../../rules/configuration/configuration.md

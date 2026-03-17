@@ -1,0 +1,1 @@
+../../rules/documentation-intent/documentation-intent.md

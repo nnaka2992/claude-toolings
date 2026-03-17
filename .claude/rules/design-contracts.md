@@ -1,0 +1,1 @@
+../../rules/design-contracts/design-contracts.md
