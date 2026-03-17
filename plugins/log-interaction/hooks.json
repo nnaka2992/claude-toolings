@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /path/to/project/.claude/hooks/log_interaction.sh"
+            "command": "bash \"$PLUGIN_DIR/log_interaction.sh\""
           }
         ]
       }
@@ -17,17 +17,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /path/to/project/.claude/hooks/log_interaction.sh"
+            "command": "bash \"$PLUGIN_DIR/log_interaction.sh\""
           }
         ]
       }
     ],
     "Stop": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "bash /path/to/project/.claude/hooks/log_interaction.sh"
+            "command": "bash \"$PLUGIN_DIR/log_interaction.sh\""
           }
         ]
       }

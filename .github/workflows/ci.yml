@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       bash: ${{ steps.filter.outputs.bash }}
+      json: ${{ steps.filter.outputs.json }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
@@ -22,8 +23,87 @@ jobs:
               - '**/*.sh'
               - '**/*.bats'
               - '.githooks/**'
+            json:
+              - '**/*.json'
 
   bash:
     needs: changes
     if: needs.changes.outputs.bash == 'true'
     uses: ./.github/workflows/bash.yml
+
+  json-validate:
+    needs: changes
+    if: needs.changes.outputs.json == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON syntax
+        run: |
+          FAILED=0
+          while IFS= read -r -d '' f; do
+            if ! jq empty "$f" 2>/dev/null; then
+              echo "::error file=$f::Invalid JSON"
+              FAILED=1
+            fi
+          done < <(find . -name '*.json' -not -path './.git/*' -print0)
+          exit "$FAILED"
+      - name: Validate plugin manifests
+        run: |
+          FAILED=0
+          while IFS= read -r -d '' f; do
+            for field in name description version type; do
+              val=$(jq -r ".$field // empty" "$f")
+              if [[ -z "$val" ]]; then
+                echo "::error file=$f::Missing required field: $field"
+                FAILED=1
+              fi
+            done
+            if ! jq -e '.author.name' "$f" > /dev/null 2>&1; then
+              echo "::error file=$f::Missing required field: author.name"
+              FAILED=1
+            fi
+            if ! jq -e '.files | (type == "object") and (length > 0)' "$f" > /dev/null 2>&1; then
+              echo "::error file=$f::Missing or invalid field: files (must be a non-empty object)"
+              FAILED=1
+            fi
+            type_val=$(jq -r '.type // empty' "$f")
+            if [[ -n "$type_val" ]]; then
+              case "$type_val" in
+                hooks|rules|skills|agents) ;;
+                *)
+                  echo "::error file=$f::Invalid type: $type_val (must be one of: hooks, rules, skills, agents)"
+                  FAILED=1
+                  ;;
+              esac
+            fi
+          done < <(find ./plugins -path '*/.claude-plugin/plugin.json' -print0)
+          exit "$FAILED"
+      - name: Validate marketplace catalog
+        run: |
+          FAILED=0
+          f=".claude-plugin/marketplace.json"
+          if [[ ! -f "$f" ]]; then
+            echo "::error::Missing marketplace catalog: $f"
+            exit 1
+          fi
+          if ! jq -e '.plugins | type == "array"' "$f" > /dev/null 2>&1; then
+            echo "::error file=$f::Missing or invalid field: plugins (must be an array)"
+            exit 1
+          fi
+          count=$(jq '.plugins | length' "$f")
+          for ((i=0; i<count; i++)); do
+            src=""
+            for field in name description source; do
+              val=$(jq -r ".plugins[$i].$field // empty" "$f")
+              if [[ -z "$val" ]]; then
+                echo "::error file=$f::Plugin entry $i missing required field: $field"
+                FAILED=1
+              fi
+              [[ "$field" == "source" ]] && src="$val"
+            done
+            if [[ -n "$src" ]] && [[ ! -d "$src" ]]; then
+              echo "::error file=$f::Plugin entry $i source path does not exist: $src"
+              FAILED=1
+            fi
+          done
+          exit "$FAILED"

@@ -1,25 +1,78 @@
 # claude-toolings
 
-A collection of sharable Claude Code tool sets — skills, hooks, and rules.
+A Claude Code plugin marketplace — discover and install reusable hooks, rules, skills, and more.
+
+## Usage
+
+Add this marketplace to Claude Code:
+
+```shell
+/plugin marketplace add nnaka2992/claude-toolings
+```
+
+Browse and install plugins:
+
+```shell
+/plugin install log-interaction@nnaka2992-claude-toolings
+/plugin install git-rules@nnaka2992-claude-toolings
+/plugin install review-changes@nnaka2992-claude-toolings
+```
+
+## Available Plugins
+
+| Plugin | Description |
+|---|---|
+| [log-interaction](plugins/log-interaction/) | Logs Claude Code interactions (prompts, tool calls, responses) to hourly log files |
+| [git-rules](plugins/git-rules/) | Git workflow conventions — conventional commits, force push policy, concise messages |
+| [review-changes](plugins/review-changes/) | Code review skill covering quality, performance, tests, docs, and security |
 
 ## Structure
 
 ```
-<type>/
-├── README.md                — Overview of the category (format, conventions)
+.claude-plugin/
+└── marketplace.json         — Marketplace catalog
+plugins/
 └── <name>/
-    ├── README.md            — Documentation for this specific tool set
-    ├── <name>.<suffix>      — The tool file (e.g., .md for rules/skills, .json for hooks)
-    └── ...                  — Supporting files (scripts, configs, etc.)
+    ├── .claude-plugin/
+    │   └── plugin.json      — Plugin manifest
+    ├── hooks.json            — Hook definitions (if applicable)
+    ├── rules/                — Rule files (if applicable)
+    └── README.md             — Plugin documentation
 ```
 
-### Categories
+## Contributing a Plugin
 
-- **skills/** — Reusable custom slash commands for Claude Code
-- **hooks/** — Event-driven shell commands triggered by Claude Code actions (may include scripts)
-- **rules/** — Markdown rules that guide Claude Code behavior
+1. Create a directory under `plugins/<your-plugin-name>/`
+2. Add `.claude-plugin/plugin.json` with the required fields (see schema below)
+3. Add the plugin's files (hooks, rules, skills, agents, etc.)
+4. Add a `README.md` with install instructions and documentation
+5. Register the plugin in `.claude-plugin/marketplace.json` (see marketplace schema below)
 
-See each category's README for format details and each tool set's README for usage instructions.
+### Plugin manifest schema (`plugin.json`)
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `name` | string | yes | Plugin identifier (kebab-case) |
+| `description` | string | yes | Brief description of what the plugin does |
+| `version` | string | yes | Semver version |
+| `author` | object | yes | `{ "name": "..." }` |
+| `type` | string | yes | Plugin type: `hooks`, `rules`, `skills`, `agents` |
+| `files` | object | yes | Map of file categories to arrays of relative paths. Use `hooks` for hook config files, `scripts` for executables, `rules` for rule files, etc. |
+
+Hook commands can reference `$PLUGIN_DIR` — this variable is set to the plugin's install path at runtime.
+
+### Marketplace catalog schema (`marketplace.json`)
+
+Each plugin entry requires `name`, `description`, and `source`. Additional fields (`version`, `author`, `category`) are recommended.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `name` | string | yes | Plugin identifier (must match `plugin.json` name) |
+| `description` | string | yes | Brief description |
+| `source` | string | yes | Relative path to the plugin directory |
+| `version` | string | no | Semver version |
+| `author` | object | no | `{ "name": "..." }` |
+| `category` | string | no | Plugin category (e.g., `productivity`, `development`, `security`) |
 
 ## Development
 
