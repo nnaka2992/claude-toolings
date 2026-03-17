@@ -1,1 +1,0 @@
-../../rules/git-workflow/git-workflow.md

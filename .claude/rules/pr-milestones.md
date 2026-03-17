@@ -1,1 +1,0 @@
-../../rules/pr-milestones/pr-milestones.md

@@ -1,1 +1,0 @@
-../../rules/dependency-minimalism/dependency-minimalism.md

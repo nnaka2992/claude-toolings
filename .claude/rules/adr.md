@@ -1,1 +1,0 @@
-../../rules/adr/adr.md

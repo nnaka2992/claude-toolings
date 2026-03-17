@@ -1,1 +1,0 @@
-../../rules/nix-deps/nix-deps.md

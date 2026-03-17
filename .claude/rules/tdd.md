@@ -1,1 +1,0 @@
-../../rules/tdd/tdd.md

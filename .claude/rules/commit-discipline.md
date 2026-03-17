@@ -1,1 +1,0 @@
-../../rules/commit-discipline/commit-discipline.md
