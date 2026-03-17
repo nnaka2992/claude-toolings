@@ -76,7 +76,7 @@ jobs:
                   ;;
               esac
             fi
-          done < <(find ./plugins -path '*/.claude-plugin/plugin.json' -print0)
+          done < <(find ./hooks ./rules ./skills ./agents -path '*/.claude-plugin/plugin.json' -print0 2>/dev/null)
           exit "$FAILED"
       - name: Validate marketplace catalog
         run: |

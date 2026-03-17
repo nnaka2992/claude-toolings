@@ -7,6 +7,6 @@
   },
   "type": "rules",
   "files": {
-    "rules": ["rules/git.md"]
+    "rules": ["git.md"]
   }
 }

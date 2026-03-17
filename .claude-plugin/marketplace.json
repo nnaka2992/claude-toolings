@@ -13,7 +13,7 @@
       "author": {
         "name": "nnaka2992"
       },
-      "source": "./plugins/log-interaction",
+      "source": "./hooks/log_interaction",
       "category": "productivity"
     },
     {
@@ -23,7 +23,7 @@
       "author": {
         "name": "nnaka2992"
       },
-      "source": "./plugins/git-rules",
+      "source": "./rules/git",
       "category": "development"
     },
     {
@@ -33,7 +33,7 @@
       "author": {
         "name": "nnaka2992"
       },
-      "source": "./plugins/review-changes",
+      "source": "./skills/review",
       "category": "productivity"
     }
   ]

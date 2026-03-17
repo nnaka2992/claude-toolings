@@ -7,6 +7,6 @@
   },
   "type": "skills",
   "files": {
-    "skills": ["skills/review.md"]
+    "skills": ["review.md"]
   }
 }

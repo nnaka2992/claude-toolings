@@ -39,10 +39,10 @@ Copy the skill into your commands directory:
 
 ```bash
 # Project-scoped (shared with team)
-cp plugins/review-changes/skills/review.md /path/to/project/.claude/commands/
+cp skills/review/review.md /path/to/project/.claude/skills/
 
 # User-scoped (personal, all projects)
-cp plugins/review-changes/skills/review.md ~/.claude/commands/
+cp skills/review/review.md ~/.claude/skills/
 ```
 
 ## Notes
