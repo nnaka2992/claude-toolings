@@ -24,6 +24,37 @@ Browse and install plugins:
 | [review-changes](skills/review/) | skill | Code review skill covering quality, performance, tests, docs, and security |
 | [adr](skills/adr/) | skill | Create Architecture Decision Records (ADRs) following Michael Nygard's template |
 
+## Rules
+
+Reusable Claude Code rules. Install all rules:
+
+```bash
+ln -s /path/to/claude-toolings/rules ~/.claude/rules
+```
+
+Install a single rule:
+
+```bash
+mkdir -p ~/.claude/rules
+ln -s /path/to/claude-toolings/rules/tdd.md ~/.claude/rules/tdd.md
+```
+
+| Rule | Description |
+|---|---|
+| [git-workflow](rules/git-workflow.md) | Conventional branches/commits, force push policy, no Co-Authored-By |
+| [tdd](rules/tdd.md) | Red-green-refactor cycle, one behavior at a time |
+| [code-quality](rules/code-quality.md) | Strict lint, complexity < 8, DRY for non-test code |
+| [design-contracts](rules/design-contracts.md) | No side effects, DbC, 100% coverage, strict types, error handling |
+| [commit-discipline](rules/commit-discipline.md) | Commit on each achievement, atomic and green |
+| [pr-milestones](rules/pr-milestones.md) | PR on each implementation milestone |
+| [adr](rules/adr.md) | ADR for every important architectural decision |
+| [nix-deps](rules/nix-deps.md) | Nix for all external dependencies |
+| [security](rules/security.md) | No secrets in code, parameterized queries, input sanitization |
+| [dependency-minimalism](rules/dependency-minimalism.md) | Justify every dep, prefer stdlib, pin versions |
+| [observability](rules/observability.md) | Structured logging, log at boundaries, proper log levels |
+| [configuration](rules/configuration.md) | No hardcoded values, env-based config, fail fast on missing |
+| [documentation-intent](rules/documentation-intent.md) | How in code, what in tests, why in commits, why-not in comments |
+
 ## Other Resources
 
 These are not installable via the marketplace but can be used manually by copying files.
@@ -31,7 +62,6 @@ These are not installable via the marketplace but can be used manually by copyin
 | Resource | Type | Description |
 |---|---|---|
 | [log-interaction](hooks/log_interaction/) | hook | Logs Claude Code interactions (prompts, tool calls, responses) to hourly log files |
-| [git-rules](rules/git/) | rule | Git workflow conventions — conventional commits, force push policy, concise messages |
 
 ## Structure
 
@@ -45,11 +75,7 @@ hooks/
     ├── hooks.json            — Hook definitions
     └── README.md
 rules/
-└── <name>/
-    ├── .claude-plugin/
-    │   └── plugin.json      — Plugin manifest
-    ├── *.md                  — Rule files
-    └── README.md
+└── <name>.md                  — Rule files (flat, no subdirectories)
 skills/
 └── <name>/
     ├── .claude-plugin/

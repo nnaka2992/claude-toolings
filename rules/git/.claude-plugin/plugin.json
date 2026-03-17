@@ -1,8 +1,0 @@
-{
-  "name": "git-rules",
-  "description": "Git workflow conventions — conventional commits, force push policy, concise messages",
-  "version": "1.0.0",
-  "author": {
-    "name": "nnaka2992"
-  }
-}
