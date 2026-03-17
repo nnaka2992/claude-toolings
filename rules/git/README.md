@@ -22,8 +22,8 @@ Copy the rule file into your rules directory:
 
 ```bash
 # Project-scoped (shared with team)
-cp plugins/git-rules/rules/git.md /path/to/project/.claude/rules/
+cp rules/git/git.md /path/to/project/.claude/rules/
 
 # User-scoped (personal, all projects)
-cp plugins/git-rules/rules/git.md ~/.claude/rules/
+cp rules/git/git.md ~/.claude/rules/
 ```

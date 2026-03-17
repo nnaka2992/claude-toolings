@@ -22,27 +22,38 @@ Browse and install plugins:
 
 | Plugin | Description |
 |---|---|
-| [log-interaction](plugins/log-interaction/) | Logs Claude Code interactions (prompts, tool calls, responses) to hourly log files |
-| [git-rules](plugins/git-rules/) | Git workflow conventions — conventional commits, force push policy, concise messages |
-| [review-changes](plugins/review-changes/) | Code review skill covering quality, performance, tests, docs, and security |
+| [log-interaction](hooks/log_interaction/) | Logs Claude Code interactions (prompts, tool calls, responses) to hourly log files |
+| [git-rules](rules/git/) | Git workflow conventions — conventional commits, force push policy, concise messages |
+| [review-changes](skills/review/) | Code review skill covering quality, performance, tests, docs, and security |
 
 ## Structure
 
 ```
 .claude-plugin/
 └── marketplace.json         — Marketplace catalog
-plugins/
+hooks/
 └── <name>/
     ├── .claude-plugin/
     │   └── plugin.json      — Plugin manifest
-    ├── hooks.json            — Hook definitions (if applicable)
-    ├── rules/                — Rule files (if applicable)
-    └── README.md             — Plugin documentation
+    ├── hooks.json            — Hook definitions
+    └── README.md
+rules/
+└── <name>/
+    ├── .claude-plugin/
+    │   └── plugin.json      — Plugin manifest
+    ├── *.md                  — Rule files
+    └── README.md
+skills/
+└── <name>/
+    ├── .claude-plugin/
+    │   └── plugin.json      — Plugin manifest
+    ├── *.md                  — Skill files
+    └── README.md
 ```
 
 ## Contributing a Plugin
 
-1. Create a directory under `plugins/<your-plugin-name>/`
+1. Create a directory under the appropriate category (`hooks/`, `rules/`, `skills/`, `agents/`)
 2. Add `.claude-plugin/plugin.json` with the required fields (see schema below)
 3. Add the plugin's files (hooks, rules, skills, agents, etc.)
 4. Add a `README.md` with install instructions and documentation
