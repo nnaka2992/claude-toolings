@@ -13,20 +13,25 @@ Add this marketplace to Claude Code:
 Browse and install plugins:
 
 ```shell
-/plugin install log-interaction@nnaka2992-claude-toolings
-/plugin install git-rules@nnaka2992-claude-toolings
 /plugin install review-changes@nnaka2992-claude-toolings
 /plugin install adr@nnaka2992-claude-toolings
 ```
 
 ## Available Plugins
 
-| Plugin | Description |
-|---|---|
-| [log-interaction](hooks/log_interaction/) | Logs Claude Code interactions (prompts, tool calls, responses) to hourly log files |
-| [git-rules](rules/git/) | Git workflow conventions — conventional commits, force push policy, concise messages |
-| [review-changes](skills/review/) | Code review skill covering quality, performance, tests, docs, and security |
-| [adr](skills/adr/) | Create Architecture Decision Records (ADRs) following Michael Nygard's template |
+| Plugin | Type | Description |
+|---|---|---|
+| [review-changes](skills/review/) | skill | Code review skill covering quality, performance, tests, docs, and security |
+| [adr](skills/adr/) | skill | Create Architecture Decision Records (ADRs) following Michael Nygard's template |
+
+## Other Resources
+
+These are not installable via the marketplace but can be used manually by copying files.
+
+| Resource | Type | Description |
+|---|---|---|
+| [log-interaction](hooks/log_interaction/) | hook | Logs Claude Code interactions (prompts, tool calls, responses) to hourly log files |
+| [git-rules](rules/git/) | rule | Git workflow conventions — conventional commits, force push policy, concise messages |
 
 ## Structure
 
@@ -49,7 +54,7 @@ skills/
 └── <name>/
     ├── .claude-plugin/
     │   └── plugin.json      — Plugin manifest
-    ├── *.md                  — Skill files
+    ├── SKILL.md              — Skill prompt
     └── README.md
 ```
 
