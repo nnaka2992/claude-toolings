@@ -35,7 +35,7 @@ Or when reviewing a specific PR:
 
 ## Manual installation
 
-Copy the skill into your commands directory:
+Copy the skill into your skills directory:
 
 ```bash
 # Project-scoped (shared with team)

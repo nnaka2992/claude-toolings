@@ -4,10 +4,5 @@
   "version": "1.0.0",
   "author": {
     "name": "nnaka2992"
-  },
-  "type": "hooks",
-  "files": {
-    "hooks": ["hooks.json"],
-    "scripts": ["log_interaction.sh"]
   }
 }

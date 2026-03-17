@@ -51,7 +51,7 @@ jobs:
         run: |
           FAILED=0
           while IFS= read -r -d '' f; do
-            for field in name description version type; do
+            for field in name description; do
               val=$(jq -r ".$field // empty" "$f")
               if [[ -z "$val" ]]; then
                 echo "::error file=$f::Missing required field: $field"
@@ -62,21 +62,7 @@ jobs:
               echo "::error file=$f::Missing required field: author.name"
               FAILED=1
             fi
-            if ! jq -e '.files | (type == "object") and (length > 0)' "$f" > /dev/null 2>&1; then
-              echo "::error file=$f::Missing or invalid field: files (must be a non-empty object)"
-              FAILED=1
-            fi
-            type_val=$(jq -r '.type // empty' "$f")
-            if [[ -n "$type_val" ]]; then
-              case "$type_val" in
-                hooks|rules|skills|agents) ;;
-                *)
-                  echo "::error file=$f::Invalid type: $type_val (must be one of: hooks, rules, skills, agents)"
-                  FAILED=1
-                  ;;
-              esac
-            fi
-          done < <(find ./hooks ./rules ./skills ./agents -path '*/.claude-plugin/plugin.json' -print0 2>/dev/null)
+          done < <(for d in ./hooks ./rules ./skills ./agents; do [ -d "$d" ] && find "$d" -path '*/.claude-plugin/plugin.json' -print0; done)
           exit "$FAILED"
       - name: Validate marketplace catalog
         run: |

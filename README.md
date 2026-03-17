@@ -67,10 +67,10 @@ skills/
 |---|---|---|---|
 | `name` | string | yes | Plugin identifier (kebab-case) |
 | `description` | string | yes | Brief description of what the plugin does |
-| `version` | string | yes | Semver version |
+| `version` | string | no | Semver version |
 | `author` | object | yes | `{ "name": "..." }` |
-| `type` | string | yes | Plugin type: `hooks`, `rules`, `skills`, `agents` |
-| `files` | object | yes | Map of file categories to arrays of relative paths. Use `hooks` for hook config files, `scripts` for executables, `rules` for rule files, etc. |
+
+The plugin system auto-discovers components from conventional directories (`hooks/`, `skills/`, `commands/`, `agents/`). See the [official reference](https://code.claude.com/docs/en/plugins-reference.md) for the full schema.
 
 Hook commands can reference `$PLUGIN_DIR` — this variable is set to the plugin's install path at runtime.
 
