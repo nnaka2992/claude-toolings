@@ -35,6 +35,16 @@
       },
       "source": "./skills/review",
       "category": "productivity"
+    },
+    {
+      "name": "adr",
+      "description": "Create Architecture Decision Records (ADRs) following Michael Nygard's template",
+      "version": "1.0.0",
+      "author": {
+        "name": "nnaka2992"
+      },
+      "source": "./skills/adr",
+      "category": "development"
     }
   ]
 }
